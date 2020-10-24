@@ -37,6 +37,9 @@ public class GunEuipper : MonoBehaviour
         {
             loadWeapon(pistol);
             activeWeaponType = Constants.Pistol;
+        }
+        if (Input.GetKeyDown("2"))
+        {
             loadWeapon(assaultRifle);
             activeWeaponType = Constants.AssaultRifle;
         }
