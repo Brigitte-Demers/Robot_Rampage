@@ -6,6 +6,9 @@ public class Gun : MonoBehaviour
 {
     // The speed at which the gun will fire. 
     public float fireRate;
+    public Ammo ammo;
+    public AudioClip liveFire;
+    public AudioClip dryFire;
     // Tracks the last time the gun was fired.
     protected float lastFireTime;
 
@@ -26,7 +29,17 @@ public class Gun : MonoBehaviour
     protected void Fire()
     {
         // Fetches the animation controller and tells it to play the "Fire"
-        // animation.
+        // animation. Checks if the player has any remaining ammunition, if so, play
+        // the liveFire sound; otherwise, play dryFire sound.
+        if (ammo.HasAmmo(tag))
+        {
+            GetComponent<AudioSource>().PlayOneShot(liveFire);
+            ammo.ConsumeAmmo(tag);
+        }
+        else
+        {
+            GetComponent<AudioSource>().PlayOneShot(dryFire);
+        }
         GetComponentInChildren<Animator>().Play("Fire");
     }
 }
