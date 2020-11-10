@@ -9,6 +9,8 @@ public class Robot : MonoBehaviour
     [SerializeField]
     private string robotType;
 
+    public Animator robot;
+
     // How much damage this robot can take before being destroyed.
     public int health;
 
@@ -76,8 +78,6 @@ public class Robot : MonoBehaviour
 
     private void fire()
     {
-        // I need to include the 'UnityEngine' when using 'Debug'. It does not work unless
-        // I do it like that.
-        UnityEngine.Debug.Log("Fire");
+        robot.Play("Fire");
     }
 }
