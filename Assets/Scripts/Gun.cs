@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    // Controls the zoom level.
+    public float zoomFactor;
+    // How far the gun can effectively shoot.
+    public int range;
+    // How much damage the guns cause.
+    public int damage;
+
+    // Field of view based on zoom factor.
+    private float zoomFOV;
+    private float zoomSpeed = 6;
+
     // The speed at which the gun will fire. 
     public float fireRate;
     public Ammo ammo;

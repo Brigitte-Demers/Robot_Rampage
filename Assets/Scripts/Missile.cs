@@ -36,4 +36,20 @@ public class Missile : MonoBehaviour
         yield return new WaitForSeconds(10);
         Destroy(gameObject);
     }
+
+    // The script checks if the Missile GameObject collided with the Player GameObject
+    // based on its tag.It also checks to see if if the player is still active, since the Player
+    // component will be disabled later in the game-over state. If so, it tells the Player script
+    // to take damage and passes along its damage value. Once the missile hits the player, it
+    // destroys itself.
+        void OnCollisionEnter(Collision collider)
+        {
+            if (collider.gameObject.GetComponent<Player>() != null
+            && collider.gameObject.tag == "Player")
+            {
+                collider.gameObject.GetComponent<Player>().TakeDamage(damage);
+            }
+
+            Destroy(gameObject);
+        }
 }
