@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Robot : MonoBehaviour
 {
+    // Obviously, the prefab for the missile.
+    [SerializeField]
+    GameObject missileprefab;
+
     // Robot type is the type of robot. The red, blue or yellow robot's
     // to be specific.
     [SerializeField]
@@ -78,6 +82,9 @@ public class Robot : MonoBehaviour
 
     private void fire()
     {
+        GameObject missile = Instantiate(missileprefab);
+        missile.transform.position = missileFireSpot.transform.position;
+        missile.transform.rotation = missileFireSpot.transform.rotation;
         robot.Play("Fire");
     }
 }

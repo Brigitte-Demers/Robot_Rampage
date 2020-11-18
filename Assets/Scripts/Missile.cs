@@ -13,12 +13,27 @@ public class Missile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        // 1.
+        // When you instantiate a missile, you start a coroutine called deathTimer(). This is
+        // name of the method that the coroutine will call.
+        StartCoroutine("deathTimer");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // 2.
+        // Move the missile forward at speed multiplied by the time between frames.
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    }
+
+    IEnumerator deathTimer()
+    {
+        // 3.
+        // You'll notice that the method immediately returns a WaitForSeconds, set to 10. Once
+        // those 10 seconds have passed, the method will resume after the yield statement. If
+        // the missile doesn’t hit the player, it should auto-destruct.
+        yield return new WaitForSeconds(10);
+        Destroy(gameObject);
     }
 }
